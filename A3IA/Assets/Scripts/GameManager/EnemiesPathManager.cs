@@ -37,3 +37,8 @@ public enum EnemiesTypes
 {
     Base1,
 }
+
+public enum ShootTypes
+{
+    Shoot1Enem, Shoot2Enem, Shoot3Enem, Shoot1
+}

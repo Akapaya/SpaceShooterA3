@@ -14,7 +14,7 @@ public class ObjectPool : MonoBehaviour
     }
 
     public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDict;
+    public Dictionary<string, Queue<GameObject>> poolDict = new Dictionary<string, Queue<GameObject>>();
 
     public delegate GameObject GetShootFromPoolEvent(string tag, Vector3 position, quaternion rotation, GameObject source);
     public static GetShootFromPoolEvent GetShootFromPoolHandle;
@@ -31,8 +31,6 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        poolDict = new Dictionary<string, Queue<GameObject>>();
-
         foreach (Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -75,14 +73,15 @@ public class ObjectPool : MonoBehaviour
         if (poolDict.ContainsKey(tag))
         {
             GameObject obj = poolDict[tag].Dequeue();
-
+            if (tag == "Shoot1" || tag == "Shoot2" || tag == "Shoot3"
+                || tag == "Shoot1Enem" || tag == "Shoot2Enem" || tag == "Shoot3Enem")
+            {
+                obj.GetComponent<ShootBase>().SetSource(source, source.GetComponent<SpaceShipModel>().shipData.souceTypes);
+                obj.GetComponent<IShoot>().InitializeShoot();
+            }
             obj.SetActive(true);
             obj.transform.position = position;
             obj.transform.rotation = rotation;
-            if(tag == "Shoot")
-            {
-                obj.GetComponent<Shoot>().SetSource(source);
-            }
             poolDict[tag].Enqueue(obj);
             return obj;
         }

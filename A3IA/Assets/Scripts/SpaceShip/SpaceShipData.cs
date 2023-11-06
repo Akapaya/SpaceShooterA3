@@ -6,7 +6,8 @@ using UnityEngine;
 public class SpaceShipData : ScriptableObject
 {
     public string shipName;
-    public GameObject shootFab;
+    public ShootTypes shootTypes;
+    public SouceTypes souceTypes;
     public int health;
     public int baseHealth;
 }

@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SpaceShipModel : MonoBehaviour, IDamageble
+public class SpaceShipModel : MonoBehaviour
 {
     public SpaceShipData shipData;
-    private ObjectPool shootersPool;
 
+    public UnityEvent<float> OnTakeDamage = new UnityEvent<float>();
+    public UnityEvent<float> OnTakeCure = new UnityEvent<float>();
     public UnityEvent OnDestroy;
+
+    public delegate GameObject GetPlayerGameObject();
+    public static GetPlayerGameObject GetPlayerGameObjectHandler;
+
+    private void OnEnable()
+    {
+        GetPlayerGameObjectHandler += ReturnPlayerGameobject;
+    }
+
+    private void OnDisable()
+    {
+        GetPlayerGameObjectHandler -= ReturnPlayerGameobject;
+    }
 
     private void Start()
     {
         shipData = Instantiate(shipData);
-        StartCoroutine(Shoot());
+        OnTakeCure.Invoke(shipData.health);
     }
 
-    public IEnumerator Shoot()
+    private GameObject ReturnPlayerGameobject()
     {
-        ObjectPool.GetShootFromPoolHandle("Shoot",transform.position,transform.rotation, this.gameObject);
-        yield return new WaitForSecondsRealtime(0.5f);
-        StartCoroutine(Shoot());
-    }
-
-    public void TakeDamage(int damage)
-    {
-        shipData.health--;
-        if(shipData.health <= 0 )
-        {
-            StopAllCoroutines();
-            this.gameObject.SetActive(false);
-            shipData.health = shipData.baseHealth;
-            OnDestroy.Invoke();
-        }
+        return this.gameObject;
     }
 }
