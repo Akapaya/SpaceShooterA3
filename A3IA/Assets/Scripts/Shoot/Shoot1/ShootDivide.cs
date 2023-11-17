@@ -8,11 +8,12 @@ public class ShootDivide : ShootBase, IShoot
 
     int numberOfProjects = 5;
     float degree = 40f;
+    float timeToDivide = 2f;
 
     public void InitializeShoot()
     {
         animator.Play("NoneShootAnim");
-        Invoke("Divided", 5f);
+        Invoke("Divided", timeToDivide);
     }
 
     void Update()

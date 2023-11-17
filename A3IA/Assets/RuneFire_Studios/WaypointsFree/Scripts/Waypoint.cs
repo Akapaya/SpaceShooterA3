@@ -89,9 +89,6 @@ namespace WaypointsFree
             xyPosition = other.XY;
             xzPosition = other.XZ;
             xyzPosition = other.XYZ;
-
-            Debug.Log(other.XYZ);
-            Debug.Log(xyzPosition);
         }
 
         public Vector3 GetPosition(PositionConstraint constraint=PositionConstraint.XYZ)

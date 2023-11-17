@@ -40,6 +40,11 @@ public class ShootBase : MonoBehaviour
             }
         }
     }
+
+    public void SetDisable()
+    {
+        this.gameObject.SetActive(false);
+    }
 }
 
 public enum SouceTypes

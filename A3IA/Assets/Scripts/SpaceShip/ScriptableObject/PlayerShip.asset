@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: PlayerShip
   m_EditorClassIdentifier: 
   shipName: Buzz
-  shootFab: {fileID: 5360516446396461004, guid: 15a449138075be84ba85457d55d59e22, type: 3}
+  shootTypes: 0
   souceTypes: 1
+  Stunned: 0
+  MovementSpeed: 2
   health: 100
   baseHealth: 100
+  energy: 0
+  maxEnergy: 100
+  Shield: 0
+  durationOfShield: 5

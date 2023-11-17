@@ -8,30 +8,27 @@ public class SpaceShipModel : MonoBehaviour
     public SpaceShipData shipData;
 
     public UnityEvent<float> OnTakeDamage = new UnityEvent<float>();
+    public UnityEvent<float> OnTakeEnergy = new UnityEvent<float>();
+    public UnityEvent<float> OnTakeShield = new UnityEvent<float>();
     public UnityEvent<float> OnTakeCure = new UnityEvent<float>();
     public UnityEvent OnDestroy;
 
-    public delegate GameObject GetPlayerGameObject();
-    public static GetPlayerGameObject GetPlayerGameObjectHandler;
-
-    private void OnEnable()
-    {
-        GetPlayerGameObjectHandler += ReturnPlayerGameobject;
-    }
-
-    private void OnDisable()
-    {
-        GetPlayerGameObjectHandler -= ReturnPlayerGameobject;
-    }
-
-    private void Start()
+    public void Start()
     {
         shipData = Instantiate(shipData);
         OnTakeCure.Invoke(shipData.health);
     }
 
-    private GameObject ReturnPlayerGameobject()
+    public void TakeShield(int value)
     {
-        return this.gameObject;
+        shipData.Shield += value;
+        OnTakeShield.Invoke(shipData.Shield);
+        Invoke("DeactiveShield", shipData.durationOfShield);
+    }
+
+    public void DeactiveShield()
+    {
+        shipData.Shield = 0;
+        OnTakeShield.Invoke(shipData.Shield);
     }
 }

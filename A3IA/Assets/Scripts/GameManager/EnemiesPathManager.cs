@@ -28,6 +28,10 @@ public class EnemiesPathManager : MonoBehaviour
                 {
                     return enemiesBase1Paths[Random.Range(0, enemiesBase1Paths.Count)];
                 }
+            case EnemiesTypes.Boss:
+                {
+                    return null;
+                }
         }
         return null;
     }
@@ -35,7 +39,7 @@ public class EnemiesPathManager : MonoBehaviour
 
 public enum EnemiesTypes
 {
-    Base1,
+    Base1, Boss
 }
 
 public enum ShootTypes

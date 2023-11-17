@@ -64,9 +64,4 @@ public class ShootExplode : ShootBase, IShoot
         circleCollider.enabled = true;
         animator.Play("Explode");
     }
-
-    public void SetDisable()
-    {
-        this.gameObject.SetActive(false);
-    }
 }
