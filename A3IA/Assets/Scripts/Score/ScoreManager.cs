@@ -12,19 +12,29 @@ public class ScoreManager : MonoBehaviour
     public delegate void IncreaseScoreEvent(int value);
     public static IncreaseScoreEvent IncreaseScoreHandler;
 
+    public delegate int GetScoreEvent();
+    public static GetScoreEvent GetScoreHandler;
+
     private void OnEnable()
     {
         IncreaseScoreHandler += IncreaseScore;
+        GetScoreHandler += GetScore;
     }
 
     private void OnDisable()
     {
         IncreaseScoreHandler -= IncreaseScore;
+        GetScoreHandler -= GetScore;
     }
 
     private void IncreaseScore(int value)
     {
         score += value;
         OnScoreIncreased.Invoke(score);
+    }
+
+    private int GetScore() 
+    {
+        return score;
     }
 }

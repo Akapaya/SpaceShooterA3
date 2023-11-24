@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fde39574d7cde647a18ad4ea4d6fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 687999542438587074}
   sourceShot: {fileID: 0}
   OnHit:
     m_PersistentCalls:

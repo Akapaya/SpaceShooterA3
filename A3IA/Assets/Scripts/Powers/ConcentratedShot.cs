@@ -4,4 +4,11 @@ using UnityEngine;
 
 public class ConcentratedShot : PowerBase, IShipPower
 {
+    public ConcentratedShot()
+    {
+        powerData = new PowerData()
+        {
+            power = powers.SuperShoot,
+        };
+    }
 }

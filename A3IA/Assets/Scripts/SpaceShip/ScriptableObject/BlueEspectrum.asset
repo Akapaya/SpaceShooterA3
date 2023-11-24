@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d45784f2d58623149b281762b19dbc51, type: 3}
-  m_Name: Base
+  m_Name: BlueEspectrum
   m_EditorClassIdentifier: 
   shipName: Tret
   shootTypes: 0
   souceTypes: 0
+  ChangeShoots: 0
   Stunned: 0
   MovementSpeed: 4
   health: 10
@@ -23,3 +24,5 @@ MonoBehaviour:
   maxEnergy: 0
   Shield: 0
   durationOfShield: 5
+  CadencyOfShoots: 4
+  TimeToChangeShoot: 0

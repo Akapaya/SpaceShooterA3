@@ -63,6 +63,7 @@ public class ShipPlayerModel : SpaceShipModel, IDamageble, IShooter
             StopAllCoroutines();
             this.gameObject.SetActive(false);
             OnDestroy.Invoke();
+            GameOverManager.GameOverHandler?.Invoke();
         }
         OnTakeDamage.Invoke(shipData.health);
     }

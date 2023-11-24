@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d45784f2d58623149b281762b19dbc51, type: 3}
-  m_Name: Base 2
+  m_Name: YellowEspectrum
   m_EditorClassIdentifier: 
   shipName: Tret
-  shootTypes: 2
+  shootTypes: 3
   souceTypes: 0
+  ChangeShoots: 0
   Stunned: 0
-  MovementSpeed: 1
+  MovementSpeed: 2
   health: 10
   baseHealth: 10
   energy: 0
   maxEnergy: 0
   Shield: 0
   durationOfShield: 5
+  CadencyOfShoots: 1
+  TimeToChangeShoot: 0

@@ -7,9 +7,10 @@ using Random = UnityEngine.Random;
 
 public class EnemyShipModel : SpaceShipModel, IDamageble, IShooter, IStunnable
 {
-    private int score = 10;
-    EnemiesTypes enemiesTypes = EnemiesTypes.Base1;
+    private int score = 20;
+    [SerializeField] private EnemiesTypes enemiesTypes = EnemiesTypes.Base1;
     WaypointsTraveler waypointsTraveler;
+    [SerializeField] List<Transform> pointsToShoot = new List<Transform>();
 
     void OnEnable()
     {
@@ -21,6 +22,20 @@ public class EnemyShipModel : SpaceShipModel, IDamageble, IShooter, IStunnable
         waypointsTraveler.MoveSpeed = shipData.MovementSpeed;
         OnDestroy.AddListener(DestroyWayTraveler);
         shipData.health = shipData.baseHealth;
+        base.Start();
+        
+        if (shipData.ChangeShoots == true)
+        {
+            StartCoroutine(ChangeShoot());
+        }
+        if (enemiesTypes == EnemiesTypes.Blue)
+        {
+            StartCoroutine(ShootWhenAppear());
+        }
+        else
+        {
+            StartCoroutine(Shoot());
+        }
     }
 
     private void OnDisable()
@@ -32,12 +47,7 @@ public class EnemyShipModel : SpaceShipModel, IDamageble, IShooter, IStunnable
 
     public new void Start()
     {
-        base.Start();
-        StartCoroutine(Shoot());
-        if (shipData.ChangeShoots == true)
-        {
-            StartCoroutine(ChangeShoot());
-        }
+        
     }
 
     public void DestroyWayTraveler()
@@ -54,9 +64,23 @@ public class EnemyShipModel : SpaceShipModel, IDamageble, IShooter, IStunnable
 
     public IEnumerator Shoot()
     {
-        ObjectPool.GetShootFromPoolHandle(shipData.shootTypes.ToString(), transform.position, transform.rotation, this.gameObject);
+        ObjectPool.GetShootFromPoolHandle(shipData.shootTypes.ToString(), pointsToShoot[Random.Range(0,pointsToShoot.Count)].position, transform.rotation, this.gameObject);
         yield return new WaitForSecondsRealtime(shipData.CadencyOfShoots);
         StartCoroutine(Shoot());
+    }
+
+    public IEnumerator ShootWhenAppear()
+    {
+        if(transform.position.y <= 3)
+        {
+            ObjectPool.GetShootFromPoolHandle(shipData.shootTypes.ToString(), pointsToShoot[Random.Range(0, pointsToShoot.Count)].position, transform.rotation, this.gameObject);
+            yield return new WaitForSecondsRealtime(1f);
+        }
+        else
+        {
+            yield return new WaitForSecondsRealtime(0);
+        }
+        StartCoroutine(ShootWhenAppear());
     }
 
     public void TakeDamage(int damage)
@@ -89,7 +113,7 @@ public class EnemyShipModel : SpaceShipModel, IDamageble, IShooter, IStunnable
     {
         shipData.Stunned = true;
         waypointsTraveler.MoveSpeed = 0;
-        StopCoroutine("Shoot");
+        StopAllCoroutines();
         yield return new WaitForSecondsRealtime(duration);
         waypointsTraveler.MoveSpeed = shipData.MovementSpeed;
         shipData.Stunned = false;

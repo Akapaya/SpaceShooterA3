@@ -98,7 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54c7aa8106a72d4e9e53ac3abe32d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 687999542438587074}
   sourceShot: {fileID: 0}
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
   circleCollider: {fileID: 2919353223914136556}
   animator: {fileID: 5361145747018208195}
 --- !u!61 &-221561372626040927

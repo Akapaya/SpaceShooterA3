@@ -8,7 +8,17 @@ public class ShootDivide : ShootBase, IShoot
 
     int numberOfProjects = 5;
     float degree = 40f;
-    float timeToDivide = 2f;
+    float timeToDivide = 0.8f;
+
+    private void OnEnable()
+    {
+        OnHit.AddListener(OnHitEvent);
+    }
+
+    private void OnDisable()
+    {
+        OnHit.RemoveListener(OnHitEvent);
+    }
 
     public void InitializeShoot()
     {
@@ -30,5 +40,14 @@ public class ShootDivide : ShootBase, IShoot
             ObjectPool.GetShootFromPoolHandle("Shoot1", transform.position, rotation, sourceShot);
         }
         this.gameObject.SetActive(false);
+    }
+
+    void OnHitEvent(GameObject target)
+    {
+        if (target.TryGetComponent<IDamageble>(out IDamageble damageble))
+        {
+            damageble.TakeDamage(1);
+            SetDisable();
+        }
     }
 }

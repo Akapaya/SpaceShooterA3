@@ -10,6 +10,7 @@ public class PowerManager : MonoBehaviour
 {
     [SerializeField] private ObjectPool gamePool;
     public List<GameObject> enemiesList = new List<GameObject>();
+    public List<GameObject> shootsList = new List<GameObject>();
 
     public delegate void ProcessPowerEvent(PowerData powerData, SpaceShipModel spaceShipModel);
     public static ProcessPowerEvent ProcessPowerHandler;
@@ -43,6 +44,24 @@ public class PowerManager : MonoBehaviour
             Queue<GameObject> enemiesQueue = gamePool.poolDict["Enemy3"];
             enemiesList.AddRange(enemiesQueue);
         }
+
+        if (gamePool.poolDict.ContainsKey("Shoot1"))
+        {
+            Queue<GameObject> shootsQueue = gamePool.poolDict["Shoot1"];
+            shootsList.AddRange(shootsQueue);
+        }
+
+        if (gamePool.poolDict.ContainsKey("Shoot1Enem"))
+        {
+            Queue<GameObject> shootsQueue = gamePool.poolDict["Shoot1Enem"];
+            shootsList.AddRange(shootsQueue);
+        }
+
+        if (gamePool.poolDict.ContainsKey("Shoot2Enem"))
+        {
+            Queue<GameObject> shootsQueue = gamePool.poolDict["Shoot2Enem"];
+            shootsList.AddRange(shootsQueue);
+        }
     }
 
     public void ProcessPower(PowerData powerData, SpaceShipModel spaceShipModel)
@@ -60,7 +79,7 @@ public class PowerManager : MonoBehaviour
                 }
             case powers.SuperShoot:
                 {
-                    
+                    ProcessSuperShootPower();
                     break;
                 }
             case powers.UltraShoot:
@@ -68,6 +87,18 @@ public class PowerManager : MonoBehaviour
                     ProcessUltraShootPower(powerData);
                     break;
                 }
+        }
+    }
+
+    public void ProcessSuperShootPower()
+    {
+        foreach (GameObject shoots in shootsList)
+        {
+            ShootBase shootBase = shoots.GetComponent<ShootBase>();
+            if (shootBase.sourceType == SouceTypes.Enemy)
+            {
+                shoots.SetActive(false);
+            }
         }
     }
 

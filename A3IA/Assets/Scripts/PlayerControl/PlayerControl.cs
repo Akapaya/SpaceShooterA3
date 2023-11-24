@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            inputPosition = touch.position;
+            inputPosition = Camera.main.ScreenToWorldPoint(touch.position);
         }
         else if (Input.GetMouseButton(0))
         {

@@ -5,13 +5,13 @@ using UnityEngine.Events;
 
 public class ShootBase : MonoBehaviour
 {
-    private Renderer renderer;
+    public Renderer renderer;
     public GameObject sourceShot;
-    private SouceTypes sourceType = SouceTypes.Ally;
+    public SouceTypes sourceType = SouceTypes.Ally;
 
     public UnityEvent<GameObject> OnHit = new UnityEvent<GameObject>();
 
-    private void Start()
+    private void OnEnable()
     {
         renderer = GetComponent<Renderer>();
     }
@@ -26,7 +26,7 @@ public class ShootBase : MonoBehaviour
     {
         if (renderer.isVisible == false)
         {
-            this.gameObject.SetActive(false);
+            SetDisable();
         }
     }
 

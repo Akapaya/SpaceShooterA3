@@ -9,6 +9,10 @@ public class EnemiesPathManager : MonoBehaviour
     public static GetPathEvent GetPathHandle;
 
     [SerializeField] private List<WaypointsGroup> enemiesBase1Paths;
+    [SerializeField] private List<WaypointsGroup> enemiesBossPaths;
+    [SerializeField] private List<WaypointsGroup> enemiesRedPaths;
+    [SerializeField] private List<WaypointsGroup> enemiesYellowPaths;
+    [SerializeField] private List<WaypointsGroup> enemiesBluePaths;
 
     private void OnEnable()
     {
@@ -30,7 +34,19 @@ public class EnemiesPathManager : MonoBehaviour
                 }
             case EnemiesTypes.Boss:
                 {
-                    return null;
+                    return enemiesBossPaths[Random.Range(0, enemiesBossPaths.Count)];
+                }
+            case EnemiesTypes.Red:
+                {
+                    return enemiesRedPaths[Random.Range(0, enemiesRedPaths.Count)];
+                }
+            case EnemiesTypes.Yellow:
+                {
+                    return enemiesYellowPaths[Random.Range(0, enemiesYellowPaths.Count)];
+                }
+            case EnemiesTypes.Blue:
+                {
+                    return enemiesBluePaths[Random.Range(0, enemiesBluePaths.Count)];
                 }
         }
         return null;
@@ -39,7 +55,7 @@ public class EnemiesPathManager : MonoBehaviour
 
 public enum EnemiesTypes
 {
-    Base1, Boss
+    Base1, Boss, Red, Yellow, Blue
 }
 
 public enum ShootTypes
