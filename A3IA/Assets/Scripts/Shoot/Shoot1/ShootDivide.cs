@@ -8,7 +8,7 @@ public class ShootDivide : ShootBase, IShoot
 
     int numberOfProjects = 5;
     float degree = 40f;
-    float timeToDivide = 0.8f;
+    float timeToDivide = 1.0f;
 
     private void OnEnable()
     {
@@ -23,22 +23,24 @@ public class ShootDivide : ShootBase, IShoot
     public void InitializeShoot()
     {
         animator.Play("NoneShootAnim");
-        Invoke("Divided", timeToDivide);
+        StartCoroutine(DividedShots());
     }
 
     void Update()
     {
-        transform.Translate((Vector2.up * 3) * Time.deltaTime);
+        transform.Translate((Vector2.up) * Time.deltaTime);
     }
-   
-    void Divided()
+
+    IEnumerator DividedShots()
     {
+        yield return new WaitForSeconds(timeToDivide);
         for (int i = 0; i < numberOfProjects; i++)
         {
             float angle = 60 + (degree * (i + 1));
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
-            ObjectPool.GetShootFromPoolHandle("Shoot1", transform.position, rotation, sourceShot);
+            ObjectPool.GetShootFromPoolHandle("Shoot3Enem", transform.position, rotation, sourceShot);
         }
+
         this.gameObject.SetActive(false);
     }
 

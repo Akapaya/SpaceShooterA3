@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class SpaceShipModel : MonoBehaviour
 {
     public SpaceShipData shipData;
-
+    public VisualFX commonFx;
     public UnityEvent<float> OnTakeDamage = new UnityEvent<float>();
     public UnityEvent<float> OnTakeEnergy = new UnityEvent<float>();
     public UnityEvent<float> OnTakeShield = new UnityEvent<float>();
@@ -29,6 +29,10 @@ public class SpaceShipModel : MonoBehaviour
     public void DeactiveShield()
     {
         shipData.Shield = 0;
+        if (commonFx != null)
+        {
+            commonFx.StopAnim();
+        }
         OnTakeShield.Invoke(shipData.Shield);
     }
 }

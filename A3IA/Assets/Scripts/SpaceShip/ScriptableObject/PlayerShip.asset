@@ -15,6 +15,7 @@ MonoBehaviour:
   shipName: Buzz
   shootTypes: 0
   souceTypes: 1
+  ChangeShoots: 0
   Stunned: 0
   MovementSpeed: 2
   health: 100
@@ -23,3 +24,5 @@ MonoBehaviour:
   maxEnergy: 100
   Shield: 0
   durationOfShield: 5
+  CadencyOfShoots: 3
+  TimeToChangeShoot: 0

@@ -12,6 +12,10 @@ public class PowerManager : MonoBehaviour
     public List<GameObject> enemiesList = new List<GameObject>();
     public List<GameObject> shootsList = new List<GameObject>();
 
+    public VisualFX commonFx;
+    public VisualFX superFx;
+    public VisualFX ultraFx;
+
     public delegate void ProcessPowerEvent(PowerData powerData, SpaceShipModel spaceShipModel);
     public static ProcessPowerEvent ProcessPowerHandler;
 
@@ -74,6 +78,7 @@ public class PowerManager : MonoBehaviour
                 }
             case powers.Shield:
                 {
+                    commonFx.PlayAnim();
                     spaceShipModel.TakeShield(powerData.data["Shield"]);
                     break;
                 }
@@ -92,6 +97,7 @@ public class PowerManager : MonoBehaviour
 
     public void ProcessSuperShootPower()
     {
+        superFx.PlayAnim();
         foreach (GameObject shoots in shootsList)
         {
             ShootBase shootBase = shoots.GetComponent<ShootBase>();
@@ -104,6 +110,7 @@ public class PowerManager : MonoBehaviour
 
     public void ProcessUltraShootPower(PowerData powerData)
     {
+        ultraFx.PlayAnim();
         foreach (GameObject enemy in enemiesList)
         {
             EnemyShipModel enemyShip = enemy.GetComponent<EnemyShipModel>();

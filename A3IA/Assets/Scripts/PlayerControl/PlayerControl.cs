@@ -7,6 +7,12 @@ public class PlayerControl : MonoBehaviour
     private float moveSpeed = 2f;
     private float offSetX = 0;
     private float offSetY = 0.5f;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -21,11 +27,26 @@ public class PlayerControl : MonoBehaviour
         {
             inputPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        if (inputPosition != Vector3.zero)
+        if (Vector2.Distance(inputPosition, Vector2.zero) > 0.3f)
         {
             inputPosition.x += offSetX;
             inputPosition.y += offSetY;
             Move(inputPosition);
+            if (inputPosition.x > 0.1f)
+            {
+                anim.Play("Right");
+            }
+            else
+            {
+                if (inputPosition.x < 0.1f)
+                {
+                    anim.Play("Left");
+                }
+            }
+        }
+        else
+        {
+            anim.Play("Idle");
         }
     }
 

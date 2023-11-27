@@ -73,16 +73,16 @@ public class ObjectPool : MonoBehaviour
         if (poolDict.ContainsKey(tag))
         {
             GameObject obj = poolDict[tag].Dequeue();
+            obj.SetActive(true);
+            obj.transform.position = position;
+            obj.transform.rotation = rotation;
+            poolDict[tag].Enqueue(obj);
             if (tag == "Shoot1" || tag == "Shoot2" || tag == "Shoot3"
                 || tag == "Shoot1Enem" || tag == "Shoot2Enem" || tag == "Shoot3Enem")
             {
                 obj.GetComponent<ShootBase>().SetSource(source, source.GetComponent<SpaceShipModel>().shipData.souceTypes);
                 obj.GetComponent<IShoot>().InitializeShoot();
             }
-            obj.SetActive(true);
-            obj.transform.position = position;
-            obj.transform.rotation = rotation;
-            poolDict[tag].Enqueue(obj);
             return obj;
         }
         return null;

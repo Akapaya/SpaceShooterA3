@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YellowEspectrum
   m_EditorClassIdentifier: 
   shipName: Tret
-  shootTypes: 3
+  shootTypes: 2
   souceTypes: 0
   ChangeShoots: 0
   Stunned: 0
