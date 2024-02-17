@@ -1,34 +1,34 @@
-# Projeto Unity: Buzz Purple Space Shooter (College Project)
+# Unity Project: Buzz Purple Space Shooter (College Project)
 
-Bem-vindo ao meu repositório Unity, onde compartilho meu projeto desenvolvido como parte do curso da faculdade de jogos digitais.
+Welcome to my Unity repository, where I share my project developed as part of my digital games college course.
 
-## Descrição do Projeto
+## Project description
 
 ### Shooter-Up
-O jogador controla a nave Buzz Purple e com diversos inimigos com cada peculiaridade em seus ataques, o foco da minha programação neste projeto (minha parte do projeto) foi tentar deixar o mais generico e expansivo possivel com o tempo que eu tinha, assim sendo facil manutenção e criação de novos inimigos pegando combinando comportamentos e tipos de tiros.
+The player controls the Buzz Purple ship and with several enemies with each peculiarity in their attacks, the focus of my programming in this project (my part of the project) was to try to make it as generic and expansive as possible with the time I had, thus being easy maintenance and creation of new enemies by catching combining behaviors and types of shots.
 
-### Nave amarela: vai descendo pela tela atirando conforme seu caminho.
-### Nave vermelha: anda horizontalmente o topo da tela, atirando um projetil que se divide em 5 (a ideia era que ele ficasse se dividindo infinitamente, porém por falta de tempo não foi possivel utilizar ECS para isso)
-### Nave azul: desce do topo da tela, atira um projetil que vai até a altura do jogador no momento do tiro e explode
+### Yellow ship: goes down the screen, shooting as it goes.
+### Red ship: moves horizontally across the top of the screen, shooting a projectile that divides into 5 (the idea was for it to divide infinitely, but due to lack of time it was not possible to use ECS for this)
+### Blue ship: descends from the top of the screen, shoots a projectile that goes up to the player's height at the moment of the shot and explodes
 
 https://github.com/Akapaya/SpaceShooterA3/assets/63330951/598e7f28-0205-471c-977d-aecf549f97f9
 
-## Desafios e Conquistas Unity
-Este projeto um dos meus ultimos projetos na faculdade, focando no comportamento dos inimigos.
+## Unity Challenges and Achievements
+This project is one of my last projects in college, focusing on enemy behavior.
 
-## Tecnologias e Habilidades Demonstradas
+## Demonstrated Technologies and Skills
 
 - Unity3D
 - C#
-- Comportamentos IA
+- AI Behaviors
 - Path-way
-- Expansivel
+- Scalable System
 
-## Contato
+## Contact
 
-Sinta-se à vontade para entrar em contato comigo para discutir mais sobre este projeto ou colaborações futuras.
+Please feel free to contact me to discuss further about this project or future collaborations.
 
 - Email: gregory_valentim@hotmail.com
 - LinkedIn: [Gregory Valentim](https://www.linkedin.com/in/gregory-valentim/)
 
-Obrigado por explorar este projeto Unity.
+Thanks for exploring this Unity project.
